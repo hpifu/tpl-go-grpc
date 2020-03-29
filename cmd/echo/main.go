@@ -28,22 +28,6 @@ import (
 // AppVersion name
 var AppVersion = "unknown"
 
-//{
-//"service": {
-//"port": 7060
-//},
-//"logger": [{
-//"filename": "log/echo.info",
-//"maxAge": "24h"
-//}, {
-//"filename": "log/echo.warn",
-//"maxAge": "24h"
-//}, {
-//"filename": "log/echo.access",
-//"maxAge": "24h"
-//}]
-//}
-
 type Options struct {
 	Service struct {
 		Port int `hflag:"usage: service port" hdef:"7060"`
@@ -117,7 +101,7 @@ func main() {
 	}
 	accessLog.Hooks.Add(hook)
 
-	infoLog.Infof("%v init success, port[%v]", os.Args[0], options.Service.Port)
+	infoLog.Infof("%v init success, config\n %#v", os.Args[0], options)
 
 	interceptor := hgrpc.NewGrpcInterceptor(infoLog, warnLog, accessLog)
 	// run server

@@ -3,16 +3,23 @@
     "port": 7060
   },
   "es": {
-    "uri": "http://elasticsearch:9200"
+    "uri": "http://127.0.0.1:9200"
   },
-  "logger": [{
+  "logger": {
+    "info": {
+      "formatter": "text",
       "filename": "log/echo.info",
       "maxAge": "24h"
-    }, {
+    },
+    "warn": {
+      "formatter": "text",
       "filename": "log/echo.warn",
       "maxAge": "24h"
-    }, {
+    },
+    "access": {
+      "formatter": "json",
       "filename": "log/echo.access",
       "maxAge": "24h"
-  }]
+    }
+  }
 }
