@@ -1,0 +1,12 @@
+vendor/
+.idea/
+output/
+test.log
+test.log.*
+log/
+docker
+.vscode/
+stack.yml
+*_pb2.py
+*_pb2_grpc.py
+__pycache__/

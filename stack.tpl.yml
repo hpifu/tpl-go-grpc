@@ -1,0 +1,17 @@
+version: "3.5"
+services:
+  ${repository}:
+    image: hatlonely/${repository}:${version}
+    hostname: ${repository}
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+    volumes:
+      - "/var/docker/${repository}/log:/var/docker/${repository}/log"
+    networks:
+      - online
+networks:
+  online:
+    external: true
+    name: online
