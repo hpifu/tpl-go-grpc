@@ -83,7 +83,6 @@ dockerbehave: buildenv
 
 output: cmd/*/*.go internal/*/*.go scripts/version.sh Makefile api/echo.pb.go api/echo_pb2.py vendor
 	@echo "compile"
-	rm -rf output
 	go build -ldflags "-X 'main.AppVersion=`sh scripts/version.sh`'" cmd/${binary}/main.go && \
 	mkdir -p output/${repository}/bin && mv main output/${repository}/bin/${binary} && \
 	mkdir -p output/${repository}/configs && cp configs/${binary}/* output/${repository}/configs && \
