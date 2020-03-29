@@ -44,7 +44,7 @@ buildenv:
 		docker network create -d bridge testnet; \
 	fi
 	if [ -z "$(shell docker ps -a --filter name=go-build-env -q)" ]; then \
-		docker run --name go-build-env --network testnet -d hatlonely/go-env:v1.1.4 tail -f /dev/null; \
+		docker run --name go-build-env --network testnet -d hatlonely/go-env:v1.1.7 tail -f /dev/null; \
 	fi
 	# if [ -z "$(shell docker ps -a --filter name=test-redis -q)" ]; then \
 	# 	docker run --name test-redis --hostname test-redis --network testnet -d redis:5.0.7; \
