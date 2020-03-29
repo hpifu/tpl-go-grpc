@@ -44,17 +44,17 @@ buildenv:
 		docker network create -d bridge testnet; \
 	fi
 	if [ -z "$(shell docker ps -a --filter name=go-build-env -q)" ]; then \
-		docker run --name go-build-env --network testnet -d hatlonely/go-env:v1.1.0 tail -f /dev/null; \
+		docker run --name go-build-env --network testnet -d hatlonely/go-env:v1.1.4 tail -f /dev/null; \
 	fi
-	if [ -z "$(shell docker ps -a --filter name=test-redis -q)" ]; then \
-		docker run --name test-redis --hostname test-redis --network testnet -d redis:5.0.7; \
-	fi
+	# if [ -z "$(shell docker ps -a --filter name=test-redis -q)" ]; then \
+	# 	docker run --name test-redis --hostname test-redis --network testnet -d redis:5.0.7; \
+	# fi
 
 .PHONY: cleanbuildenv
 cleanbuildenv:
-	if [ -z "$(shell docker ps -a --filter name=test-redis -q)" ]; then \
-		docker stop test-redis && docker rm test-redis; \
-	fi
+	# if [ -z "$(shell docker ps -a --filter name=test-redis -q)" ]; then \
+	# 	docker stop test-redis && docker rm test-redis; \
+	# fi
 	if [ ! -z "$(shell docker ps -a --filter name=go-build-env -q)" ]; then \
 		docker stop go-build-env && docker rm go-build-env; \
 	fi
@@ -160,7 +160,7 @@ golang:
 	@hash go 2>/dev/null || { \
 		echo "install go1.9" && \
 		mkdir -p third && cd third && \
-		wget https://dl.google.com/go/go1.9.linux-amd64.tar.gz && \
+		wget https://dl.google.com/go/go1.14.1.linux-amd64.tar.gz && \
     	tar -xzvf go1.9.linux-amd64.tar.gz && \
 		cd .. && \
 		go version; \
