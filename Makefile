@@ -21,13 +21,12 @@ deploytest:
 	if [ -z "$(shell docker network ls --filter name=testnet -q)" ]; then \
 		docker network create -d bridge testnet; \
 	fi
-	if [ ! -z "$(shell docker ps -a --filter name=test-go-godtoken -q)" ]; then \
-		docker stop test-go-godtoken && docker rm test-go-godtoken; \
+	if [ ! -z "$(shell docker ps -a --filter name=test-tpl-go-grpc -q)" ]; then \
+		docker stop test-tpl-go-grpc && docker rm test-tpl-go-grpc; \
 	fi
-	docker run --name test-go-godtoken --hostname test-go-godtoken --network testnet -d \
-		-e GODTOKEN_REDIS_ADDR="test-redis:6379" \
-		-e GODTOKEN_SERVICE_PORT="17060" \
-		-e GODTOKEN_ES_URI="http://test-elasticsearch:9200" \
+	docker run --name test-tpl-go-grpc --hostname test-tpl-go-grpc --network testnet -d \
+		-e ECHO_SERVICE_PORT="17060" \
+		-e ECHO_ES_URI="http://test-elasticsearch:9200" \
 		${dockeruser}/${repository}:${version}
 
 .PHONY: remove
